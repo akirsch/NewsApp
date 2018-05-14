@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">News App</string>
+
+    <!-- Placeholder no news items text -->
+    <string name="placeholder_no_news">No News</string>
+
+    <!-- Placeholder Headline text -->
+    <string name="placeholder_headline">This is the Headline</string>
+
+    <!-- Placeholder Category text -->
+    <string name="placeholder_category">World News</string>
+
+    <!-- Placeholder TrailText  -->
+    <string name="placeholder_trailtext">This is some attention grabbing trailText</string>
+
+    <!-- Placeholder byline  -->
+    <string name="placeholder_author">Joe Bloggs</string>
+
+    <!-- Placeholder date  -->
+    <string name="placeholder_date">01/01/2018</string>
+
+    <!-- display text when no news items are found -->
+    <string name="no_news_found">No news item were found, please try again later</string>
+
+    <!-- Display text when user offline -->
+    <string name="user_offline">Your phone is currently offline. Please check your network settings,
+        turn off airline mode, or try again later</string>
+</resources>
