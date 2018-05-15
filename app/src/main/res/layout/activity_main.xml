@@ -51,6 +51,7 @@
         android:gravity="center"
         tools:text="@string/placeholder_no_news"
         android:drawablePadding="@dimen/view_margin_16"
+        android:drawableTint="@color/textColor"
         android:textAppearance="?android:textAppearanceMedium"/>
 
     </RelativeLayout>
