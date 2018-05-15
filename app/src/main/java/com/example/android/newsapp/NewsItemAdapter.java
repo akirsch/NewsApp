@@ -11,12 +11,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.util.Date;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 public class NewsItemAdapter extends
         RecyclerView.Adapter<NewsItemAdapter.ViewHolder> {
@@ -32,6 +36,8 @@ public class NewsItemAdapter extends
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+
 
 
         // Provide a direct reference to each of the views within a data item
@@ -111,7 +117,12 @@ public class NewsItemAdapter extends
         authorView.setText(currentNewsItem.getAuthor());
 
         TextView dateView = viewHolder.dateView;
-        dateView.setText(R.string.placeholder_date);
+
+        String dateOfArticle = formatDate(currentNewsItem.getDate());
+
+        dateView.setText(dateOfArticle);
+
+
 
         // create click listener which will open the url of the news story that user clicks on
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -142,10 +153,22 @@ public class NewsItemAdapter extends
         return mNewsItems.size();
     }
 
-    public LocalDate formatDate(String string){
-        DateTimeFormatter formatter = new DateTimeFormatter.ofPattern("dd MMMM yy");
-        LocalDate date = LocalDate.parse(string, formatter);
-        return date;
+    /**
+     * This method format the date into a specific pattern.
+     * @param dateObj is the web publication date.
+     * @return a date formatted's string.
+     */
+    private String formatDate(String dateObj) {
+        String dateFormatted = "";
+        SimpleDateFormat inputDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault());
+        SimpleDateFormat outputDate = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
+        try {
+            Date newDate = inputDate.parse(dateObj);
+            return outputDate.format(newDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateFormatted;
     }
 
 
