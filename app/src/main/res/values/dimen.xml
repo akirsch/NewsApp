@@ -2,7 +2,7 @@
 <resources>
     <dimen name="dp_6">6dp</dimen>
     <string name="dp_16">16dp</string>
-    <dimen name="news_item_height">320dp</dimen>
+    <dimen name="news_item_height">370dp</dimen>
     <dimen name="news_image_height">170dp</dimen>
     <dimen name="corner_radius">2dp</dimen>
     <dimen name="view_margin_standard">8dp</dimen>

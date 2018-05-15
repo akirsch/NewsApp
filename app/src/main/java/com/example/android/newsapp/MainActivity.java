@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     ProgressBar progressBar;
     TextView emptyTextView;
     NewsItemAdapter newsItemAdapter;
-    ArrayList<NewsItem> newsItems;
+    ArrayList<NewsItem> mNewsItems;
 
     /** target url for a Guardian API query */
     private static final String JSON_RESPONSE = "https://content.guardianapis.com/search?show-fields=thumbnail,trailText,headline,byline&api-key=49c021e8-1aba-47fe-887d-e7ff6cd5888b";
@@ -45,6 +45,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Set title of action bar to appropriate label for this Activity
         getSupportActionBar().setTitle(R.string.app_name);
 
+        // Set the padding to match the Status Bar height (to avoid title being cut off by
+        // transparent toolbar
+
+
+        myToolbar.setPadding(0, 25, 0, 0);
+
 
         // find references to views in the layout
         recyclerView = findViewById(R.id.newsItemRecyclerView);
@@ -53,20 +59,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         emptyTextView = findViewById(R.id.empty_list_view);
 
-        // create new ArrayList of news items
-        newsItems = new ArrayList<>();
-
+        mNewsItems = new ArrayList<>();
         // Create adapter passing in this ArrayList as the data source
-        newsItemAdapter = new NewsItemAdapter(newsItems);
 
-        // display empty list view if there are no news items in array
-        if (newsItems.isEmpty()){
-            recyclerView.setVisibility(View.GONE);
-            emptyTextView.setVisibility(View.INVISIBLE);
-        } else {
-            recyclerView.setVisibility(View.VISIBLE);
-            emptyTextView.setVisibility(View.GONE);
-        }
+        newsItemAdapter = new NewsItemAdapter(this, mNewsItems);
+
+        // Attach the adapter to the RecyclerView to populate items
+        recyclerView.setAdapter(newsItemAdapter);
+
+        // Set layout manager to position the items
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+
 
         // check there is a network connection
         ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -78,15 +84,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         if(isConnected){
             // If there is a network connection,
-            // create new instance of load manager and intantiate new Loader object , or renew existing one.
+            // create new instance of load manager and instantiate new Loader object , or renew existing one.
             getLoaderManager().initLoader(0,null, this);
             Log.v(LOG_TAG, "load manager intialized");
         } else {
             // if no connection, display message explaining the issue to users
             progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
             emptyTextView.setText(R.string.user_offline);
             Drawable img = getDrawable(R.drawable.ic_signal_wifi_off);
-            emptyTextView.setCompoundDrawables(null, null, null, img);
+            emptyTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, img);
         }
 
     }
@@ -105,17 +112,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // make progress bar disappear when background thread finishes loading
         progressBar.setVisibility(View.GONE);
 
+
         if (newsItems == null) {
             return;
         }
-        if (newsItems != null && !newsItems.isEmpty()) {
-            // Attach the adapter to the RecyclerView to populate items
-            recyclerView.setAdapter(newsItemAdapter);
-
-            // Set layout manager to position the items
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        if (newsItems.isEmpty()){
+            recyclerView.setVisibility(View.GONE);
+            emptyTextView.setVisibility(View.VISIBLE);
+            emptyTextView.setText(R.string.no_news_found);
         }
-        emptyTextView.setText(R.string.no_news_found);
+        if (newsItems != null && !newsItems.isEmpty()) {
+            emptyTextView.setVisibility(View.GONE);
+            mNewsItems.addAll(newsItems);
+            newsItemAdapter.notifyDataSetChanged();
+        }
+
 
     }
 
@@ -123,7 +134,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoaderReset(Loader<ArrayList<NewsItem>> loader) {
         Log.v(LOG_TAG, "onResetLoader called");
         // Loader reset, so we can clear out our existing data.
-        recyclerView.setAdapter(null);
+        mNewsItems.clear();
+        newsItemAdapter.notifyDataSetChanged();
 
     }
 }

@@ -20,9 +20,9 @@
     <string name="placeholder_date">01/01/2018</string>
 
     <!-- display text when no news items are found -->
-    <string name="no_news_found">No news item were found, please try again later</string>
+    <string name="no_news_found">No news item were found, please try again later.</string>
 
     <!-- Display text when user offline -->
-    <string name="user_offline">Your phone is currently offline. Please check your network settings,
-        turn off airline mode, or try again later</string>
+    <string name="user_offline">No wifi connection found.\n Please check your network settings,
+        turn off airline mode, or try again later.</string>
 </resources>

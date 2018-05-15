@@ -26,53 +26,52 @@
 
         <TextView
             android:id="@+id/headline_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/StandardTextView"
             android:layout_below="@id/news_image"
             android:layout_margin="@dimen/view_margin_standard"
-            android:fontFamily="@font/roboto"
+            android:textStyle="bold"
             android:textSize="@dimen/headline_size"
             tools:text="@string/placeholder_headline" />
 
         <TextView
             android:id="@+id/trail_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/StandardTextView"
             android:layout_below="@id/headline_text"
+            android:layout_marginBottom="@dimen/view_margin_standard"
+            android:layout_marginEnd="@dimen/view_margin_standard"
             android:layout_marginStart="@dimen/view_margin_standard"
+            android:maxLines="3"
+            android:ellipsize="end"
             android:textSize="@dimen/trailtext_size"
-            android:fontFamily="@font/roboto"
             tools:text="@string/placeholder_trailtext" />
 
         <TextView
             android:id="@+id/category_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/StandardTextView"
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/view_margin_standard"
-            tools:text="@string/placeholder_category"
-            android:fontFamily="@font/roboto"/>
+            android:textSize="@dimen/trailtext_size"
+            tools:text="@string/placeholder_category" />
 
 
         <TextView
             android:id="@+id/date_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/StandardTextView"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/view_margin_standard"
-            android:fontFamily="@font/roboto"
+            android:layout_marginEnd="@dimen/view_margin_standard"
+            android:layout_marginBottom="@dimen/view_margin_standard"
+            android:layout_marginTop="@dimen/dp_6"
             android:textSize="@dimen/details_size"
             tools:text="@string/placeholder_date" />
 
         <TextView
             android:id="@+id/byline_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/view_margin_standard"
+            style="@style/StandardTextView"
             android:layout_above="@id/date_view"
-            android:fontFamily="@font/roboto"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/view_margin_standard"
+            android:layout_marginEnd="@dimen/view_margin_standard"
             android:textSize="@dimen/details_size"
             tools:text="@string/placeholder_author" />
 

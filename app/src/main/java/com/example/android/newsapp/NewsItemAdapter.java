@@ -10,6 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class NewsItemAdapter extends
@@ -17,10 +23,12 @@ public class NewsItemAdapter extends
 
     // Store a member variable for the News Items Array
     final private List<NewsItem> mNewsItems;
+    Context mContext;
 
     // Pass in the news items array into the constructor
-    public NewsItemAdapter(List<NewsItem> newsItems) {
+    public NewsItemAdapter(Context context, List<NewsItem> newsItems) {
         mNewsItems = newsItems;
+        mContext = context;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -74,9 +82,21 @@ public class NewsItemAdapter extends
         // Get the data model based on position
         final NewsItem currentNewsItem = mNewsItems.get(position);
 
+
+
         // Set item views based on your views and data model
         final ImageView imageView = viewHolder.newsImageView;
-        imageView.setImageResource(R.mipmap.ic_launcher);
+
+        // in order to use centerCrop() we must first write this code in Glide version 4 and up
+        RequestOptions options = new RequestOptions();
+        options.centerCrop();
+
+        // use Glide to get image from url and put it in image view
+        Glide.with(mContext)
+                .load(currentNewsItem.getThumbnailUrl())
+                .apply(options)
+                .into(imageView);
+
 
         TextView headlineView = viewHolder.headlineView;
         headlineView.setText(currentNewsItem.getHeadline());
@@ -121,6 +141,13 @@ public class NewsItemAdapter extends
     public int getItemCount() {
         return mNewsItems.size();
     }
+
+    public LocalDate formatDate(String string){
+        DateTimeFormatter formatter = new DateTimeFormatter.ofPattern("dd MMMM yy");
+        LocalDate date = LocalDate.parse(string, formatter);
+        return date;
+    }
+
 
 
 

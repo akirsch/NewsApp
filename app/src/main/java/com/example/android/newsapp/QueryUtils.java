@@ -1,5 +1,6 @@
 package com.example.android.newsapp;
 
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import org.json.JSONArray;
@@ -96,7 +97,9 @@ public final class QueryUtils {
 
                 String category = currentNewsItemJSONObject.optString("sectionName");
                 String headline = fieldsJSONObject.optString("headline");
-                String trailText = fieldsJSONObject.optString("trailText");
+                String trailTextHtml = fieldsJSONObject.optString("trailText");
+                // remove html tags from this string
+                String trailText = Html.fromHtml(trailTextHtml).toString();
                 String author = fieldsJSONObject.optString("byline");
                 String date = currentNewsItemJSONObject.optString("webPublicationDate");
                 String webUrl = currentNewsItemJSONObject.optString("webUrl");
