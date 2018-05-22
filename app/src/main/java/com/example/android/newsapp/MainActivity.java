@@ -2,6 +2,7 @@ package com.example.android.newsapp;
 
 import android.app.LoaderManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.Loader;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -12,25 +13,32 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<NewsItem>>{
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<NewsItem>> {
 
-    // initialize global variables
-    RecyclerView recyclerView;
-    ProgressBar progressBar;
-    TextView emptyTextView;
-    NewsItemAdapter newsItemAdapter;
-    ArrayList<NewsItem> mNewsItems;
-
-    /** target url for a Guardian API query */
+    private static final String LOG_TAG = MainActivity.class.getName();
+    /**
+     * target url for a Guardian API query
+     */
     private static final String JSON_RESPONSE = "https://content.guardianapis.com/search?show-fields=thumbnail,trailText,headline,byline&api-key=49c021e8-1aba-47fe-887d-e7ff6cd5888b";
 
-    public static final String LOG_TAG = MainActivity.class.getName();
+    // initialize String constant to store value of private api key the the Guardian Api
+    private static final String API_KEY = "49c021e8-1aba-47fe-887d-e7ff6cd5888b";
+
+    // initialize global variables
+    private RecyclerView recyclerView;
+    private ProgressBar progressBar;
+    private TextView emptyTextView;
+    private NewsItemAdapter newsItemAdapter;
+    private ArrayList<NewsItem> mNewsItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Set the Toolbar as Action Bar
         setSupportActionBar(myToolbar);
         // Set title of action bar to appropriate label for this Activity
-        getSupportActionBar().setTitle(R.string.app_name);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.app_name);
 
         // Set the padding to match the Status Bar height (to avoid title being cut off by
         // transparent toolbar
@@ -71,22 +79,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-
-
-
         // check there is a network connection
         ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        NetworkInfo activeNetwork = Objects.requireNonNull(cm).getActiveNetworkInfo();
 
         boolean isConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
 
-        if(isConnected){
+        if (isConnected) {
             // If there is a network connection,
             // create new instance of load manager and instantiate new Loader object , or renew existing one.
-            getLoaderManager().initLoader(0,null, this);
-            Log.v(LOG_TAG, "load manager intialized");
+            getLoaderManager().initLoader(0, null, this);
+            Log.v(LOG_TAG, "load manager initialized");
         } else {
             // if no connection, display message explaining the issue to users
             progressBar.setVisibility(View.GONE);
@@ -96,6 +101,26 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             emptyTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, img);
         }
 
+    }
+
+    @Override
+    // This method initialize the contents of the Activity's options menu.
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the Options Menu we specified in XML
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    // This method opens Settings Activity when the settings option is selected from the menu
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -116,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (newsItems == null) {
             return;
         }
-        if (newsItems.isEmpty()){
+        if (newsItems.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
             emptyTextView.setVisibility(View.VISIBLE);
             emptyTextView.setText(R.string.no_news_found);

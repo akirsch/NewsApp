@@ -8,14 +8,16 @@ import java.util.ArrayList;
 
 public class NewsItemLoader extends AsyncTaskLoader<ArrayList<NewsItem>> {
 
-    /** Query URL */
+    /**
+     * Query URL
+     */
     String mUrl;
 
     /**
      * Constructs a new {@link NewsItemLoader}.
      *
      * @param context of the activity
-     * @param url to load data from
+     * @param url     to load data from
      */
     public NewsItemLoader(Context context, String url) {
         super(context);

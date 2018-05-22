@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_display_by_region_labels">
+        <item>@string/settings_display_uk_news_label</item>
+        <item>@string/settings_display_us_news_label</item>
+        <item>@string/settings_display_australia_news_label</item>
+    </string-array>
+
+    <string-array name="settings_display_by_region_values">
+        <item>@string/settings_display_uk_news_value</item>
+        <item>@string/settings_display_us_news_value</item>
+        <item>@string/settings_display_australia_news_value</item>
+    </string-array>
+</resources>

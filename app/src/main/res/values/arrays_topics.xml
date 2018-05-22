@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_display_by_topic_labels">
+        <item>@string/settings_display_news_label</item>
+        <item>@string/settings_display_sport_label</item>
+        <item>@string/settings_display_technology_label</item>
+        <item>@string/settings_display_business_label</item>
+        <item>@string/settings_display_science_label</item>
+        <item>@string/settings_display_travel_label</item>
+        <item>@string/settings_display_weather_label</item>
+    </string-array>
+
+    <string-array name="settings_display_by_topic_values">
+        <item>@string/settings_display_news_value</item>
+        <item>@string/settings_display_sport_value</item>
+        <item>@string/settings_display_technology_value</item>
+        <item>@string/settings_display_business_value</item>
+        <item>@string/settings_display_science_value</item>
+        <item>@string/settings_display_travel_value</item>
+        <item>@string/settings_display_weather_value</item>
+    </string-array>
+</resources>

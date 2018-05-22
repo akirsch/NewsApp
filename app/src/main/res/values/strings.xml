@@ -25,4 +25,60 @@
     <!-- Display text when user offline -->
     <string name="user_offline">No wifi connection found.\n Please check your network settings,
         turn off airline mode, or try again later.</string>
+
+    <!-- Text for settings activity -->
+    <string name="settings_menu_item">Settings</string>
+
+    <string name="settings_title">News App Settings</string>
+
+    <!-- Strings For Display-By-Topic Preference [CHAR LIMIT=30] -->
+    <string name="settings_display_by_topic_label">Display by topic</string>
+    <string name="settings_display_by_topic_key" translatable="false">display_by_topic</string>
+    <string name="settings_display_by_topic_default" translatable="false">@string/settings_display_news_value</string>
+
+    <!-- Label for display news [CHAR LIMIT=20] -->
+    <string name="settings_display_news_label">News</string>
+    <string name="settings_display_news_value" translatable="false">news</string>
+
+    <!-- Label for display sport news[CHAR LIMIT=20] -->
+    <string name="settings_display_sport_label">Sport</string>
+    <string name="settings_display_sport_value" translatable="false">sport</string>
+
+    <!-- Label for display technology news[CHAR LIMIT=20] -->
+    <string name="settings_display_technology_label">Technology</string>
+    <string name="settings_display_technology_value" translatable="false">technology</string>
+
+    <!-- Label for display business news[CHAR LIMIT=20] -->
+    <string name="settings_display_business_label">Business</string>
+    <string name="settings_display_business_value" translatable="false">business</string>
+
+    <!-- Label for display science news[CHAR LIMIT=20] -->
+    <string name="settings_display_science_label">Science</string>
+    <string name="settings_display_science_value" translatable="false">science</string>
+
+    <!-- Label for display travel news[CHAR LIMIT=20] -->
+    <string name="settings_display_travel_label">Travel</string>
+    <string name="settings_display_travel_value" translatable="false">travel</string>
+
+    <!-- Label for display weather news[CHAR LIMIT=20] -->
+    <string name="settings_display_weather_label">Weather</string>
+    <string name="settings_display_weather_value" translatable="false">weather</string>
+
+    <!-- Strings For Display-By-Region Preference [CHAR LIMIT=30] -->
+    <string name="settings_display_by_region_label">Display by region</string>
+    <string name="settings_display_by_region_key" translatable="false">display_by_region</string>
+    <string name="settings_display_by_region_default" translatable="false">@string/settings_display_uk_news_value</string>
+
+    <!-- Label for display uk news[CHAR LIMIT=20] -->
+    <string name="settings_display_uk_news_label">UK News</string>
+    <string name="settings_display_uk_news_value" translatable="false">uk-news</string>
+
+    <!-- Label for display us news[CHAR LIMIT=20] -->
+    <string name="settings_display_us_news_label">US News</string>
+    <string name="settings_display_us_news_value" translatable="false">us-news</string>
+
+    <!-- Label for display Australia news[CHAR LIMIT=20] -->
+    <string name="settings_display_australia_news_label">Australia News</string>
+    <string name="settings_display_australia_news_value" translatable="false">australia-news</string>
+
 </resources>
