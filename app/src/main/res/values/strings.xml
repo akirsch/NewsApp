@@ -65,20 +65,19 @@
     <string name="settings_display_weather_value" translatable="false">weather</string>
 
     <!-- Strings For Display-By-Region Preference [CHAR LIMIT=30] -->
-    <string name="settings_display_by_region_label">Display by region</string>
-    <string name="settings_display_by_region_key" translatable="false">display_by_region</string>
-    <string name="settings_display_by_region_default" translatable="false">@string/settings_display_uk_news_value</string>
+    <string name="settings_order_by_date_label">Order by date</string>
+    <string name="settings_order_by_date_key" translatable="false">order_by_date</string>
+    <string name="settings_order_by_date_default" translatable="false">@string/settings_order_by_newest_value</string>
 
     <!-- Label for display uk news[CHAR LIMIT=20] -->
-    <string name="settings_display_uk_news_label">UK News</string>
-    <string name="settings_display_uk_news_value" translatable="false">uk-news</string>
+    <string name="settings_order_by_newest_label">Newest</string>
+    <string name="settings_order_by_newest_value" translatable="false">newest</string>
 
     <!-- Label for display us news[CHAR LIMIT=20] -->
-    <string name="settings_display_us_news_label">US News</string>
-    <string name="settings_display_us_news_value" translatable="false">us-news</string>
+    <string name="settings_order_by_oldest_label">Oldest</string>
+    <string name="settings_order_by_oldest_value" translatable="false">oldest</string>
 
-    <!-- Label for display Australia news[CHAR LIMIT=20] -->
-    <string name="settings_display_australia_news_label">Australia News</string>
-    <string name="settings_display_australia_news_value" translatable="false">australia-news</string>
+
+    <string name="show_fields_values">thumbnail&#44;trailText&#44;headline&#44;byline</string>
 
 </resources>

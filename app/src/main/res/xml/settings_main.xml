@@ -11,9 +11,9 @@
         android:title="@string/settings_display_by_topic_label" />
 
     <ListPreference
-        android:defaultValue="@string/settings_display_by_region_default"
-        android:entries="@array/settings_display_by_region_labels"
-        android:entryValues="@array/settings_display_by_region_values"
-        android:key="@string/settings_display_by_region_key"
-        android:title="@string/settings_display_by_region_label" />
+        android:defaultValue="@string/settings_order_by_date_default"
+        android:entries="@array/settings_order_by_date_labels"
+        android:entryValues="@array/settings_order_by_date_values"
+        android:key="@string/settings_order_by_date_key"
+        android:title="@string/settings_order_by_date_label" />
 </PreferenceScreen>
